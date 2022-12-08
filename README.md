@@ -6,6 +6,8 @@ and instrumented logging with [winston](https://github.com/open-telemetry/opente
 
 The app serves http://localhost:8080/. Returns "hello world".
 
+>_This app can also serve as a backend for a [this]() python app, to form a richer distributed tracing example.
+
 Setup
 -----
 ```
@@ -28,9 +30,13 @@ node --require './tracing.js' app.js
 Log Shipping
 ------------
 To make the logged output ready to be consumed by log shippers, logged output should be in
-JSON-line formatted. This requires:
-* Removing `format` from `winston.transports.Console` in [logger.js](./logger.js).
-* Replacing `ConsoleSpanExporter` in [tracing.js](./tracing.js).
+JSON-line formatted. This requires removing `format` from `winston.transports.Console` in [logger.js](./logger.js).
+
+Exporting Traces
+----------------
+To ship traces a cloud service, `ConsoleSpanExporter` in [tracing.js](./tracing.js) should be replaced
+with either an exporter to a local agent (e.g., Open Teletry agent) or an exporter that connects to the target cloud service
+directly.
 
 References
 ----------

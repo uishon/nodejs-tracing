@@ -8,7 +8,7 @@ logger.log("info", "hello world");
 
 app.get("/", (req, res) => {
     logger.log("info", "serving / with hello world");
-    res.send("Hello World");
+    res.send("Hello World from nodeJS");
 });
 
 app.listen(PORT, () => {
